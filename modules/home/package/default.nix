@@ -1,18 +1,14 @@
 { inputs, pkgs, ... }: 
 {
   home.packages = (with pkgs; [
-    bitwise                           # cli tool for bit / hex manipulation
-    eza                               # ls replacement
     entr                              # perform action when file change
     file                              # Show file information 
     fzf                               # fuzzy finder
-    jdk17                             # java
     lazygit
-    libreoffice
+    lsd
     nitch                             # systhem fetch util
     nix-prefetch-github
     pipx                              # Install Python applications in isolated environments
-    prismlauncher                     # minecraft launcher
     ripgrep                           # grep replacement
     soundwireserver                   # pass audio to android phone
     todo                              # cli todo list
@@ -29,8 +25,6 @@
     # Python
     python3
 
-    bleachbit                         # cache cleaner
-    cmatrix
     gparted                           # partition manager
     ffmpeg
     imv                               # image viewer

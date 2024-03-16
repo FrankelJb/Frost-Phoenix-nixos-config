@@ -3,86 +3,85 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-      # nix language
-      bbenoist.nix
-      # nix-shell suport 
-      arrterian.nix-env-selector
-      # python
-      ms-python.python
-      # C/C++
-      ms-vscode.cpptools
-      # OCaml
-      ocamllabs.ocaml-platform
+      userSettings = {
+        "editor.bracketPairColorization.enabled" = true;
+        "explorer.decorations.badges" = true;
+        "explorer.decorations.colors" = true;
+        "editor.fontLigatures" = true;
+        "editor.fontFamily" = "Fira Code";
+        "editor.formatOnSave" = true;
+        "editor.formatOnType" = true;
+        "editor.minimap.enabled" = false;
+        "editor.wordWrap" = "on";
+        "editor.lineNumbers" = "relative";
+        "latex-workshop.latex.tools" = [{
+          "name" = "latexmk";
+          "command" = "latexmk";
+          "args" = [
+            "-xelatex"
+            "-synctex=1"
+            "-interaction=nonstopmode"
+            "-file-line-error"
+            "%DOC%"
+          ];
+        }];
+        "redhat.telemetry.enabled" = false;
+        "rust.build_on_save" = true;
+        "terminal.integrated.fontFamily" = "Fira Code";
+        "vim.sneak" = true;
+        "vim.sneakUseIgnorecaseAndSmartcase" = true;
+        "vim.easymotion" = true;
+        "vim.camelCaseMotion.enable" = true;
+        "vim.normalModeKeyBindings" = [
+          {
+            "before" = [
+              "leader"
+              "w"
+            ];
+            "commands" = [
+              "workbench.action.files.save"
+            ];
+          }
+        ];
+        "vim.leader" = "<space>";
+        "workbench.colorTheme" = "Dracula";
+        "workbench.iconTheme" = "material-icon-theme";
+        "yaml.format.bracketSpacing" = false;
+      };
+      extensions = (with pkgs.vscode-extensions; [
+        bungcip.better-toml
+        donjayamanne.githistory
+        dracula-theme.theme-dracula
+        eamodio.gitlens
+        editorconfig.editorconfig
+        gruntfuggly.todo-tree
+        james-yu.latex-workshop
+        matklad.rust-analyzer
+        pkief.material-icon-theme
+        redhat.vscode-yaml
+        skyapps.fish-vscode
+        tamasfe.even-better-toml
+        vscodevim.vim
+      ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "advanced-new-file";
+          publisher = "patbenatar";
+          version = "1.2.2";
+          sha256 = "09a6yldbaz9d7gn9ywkqd96l3pkc0y30b6b02nv2qigli6aihm6g";
+        }
+        {
+          name = "All-Autocomplete";
+          publisher = "Atishay-Jain";
+          version = "0.0.26";
+          sha256 = "sha256-+hYacGYbMeH63xUOepHGAEnHDoCeIhmV8T+vTM9mkbY=";
+        }
+        {
+          name = "vscode-assorted-languages";
+          publisher = "EdwinKofler";
+          version = "0.18.0";
+          sha256 = "gMkifN17VZbwYMsd9pY6gp5N/zXR+lLTHrZamrr0kDo=";
+        }
+      ];
 
-      # Color theme
-      catppuccin.catppuccin-vsc
-      catppuccin.catppuccin-vsc-icons
-    ];
-    userSettings = {
-      "update.mode" = "none";
-      "extensions.autoUpdate" = false; # This stuff fixes vscode freaking out when theres an update
-      "window.titleBarStyle" = "custom"; # needed otherwise vscode crashes, see https://github.com/NixOS/nixpkgs/issues/246509
-
-      "window.menuBarVisibility" = "toggle";
-      "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'SymbolsNerdFont', 'monospace', monospace";
-      "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'SymbolsNerdFont'";
-      "editor.fontSize" = 16;
-      "workbench.colorTheme" = "Catppuccin Mocha";
-      "workbench.iconTheme" = "catppuccin-mocha";
-      "vsicons.dontShowNewVersionMessage" = true;
-      "explorer.confirmDragAndDrop" = false;
-      "editor.fontLigatures" = true;
-      "editor.minimap.enabled" = false;
-      "workbench.startupEditor" = "none";
-
-      "editor.formatOnType" = true;
-
-      "workbench.layoutControl.type" = "menu";
-      "workbench.editor.limit.enabled" = true;
-      "workbench.editor.limit.value" = 5;
-      "workbench.editor.limit.perEditorGroup" = true;
-      "workbench.editor.showTabs" = "single";
-      "files.autoSave" = "onWindowChange";
-      "explorer.openEditors.visible" = 0;
-      "breadcrumbs.enabled" = false;
-      "editor.renderControlCharacters" = false;
-      "workbench.activityBar.location" = "hidden";
-      "workbench.statusBar.visible" = false;
-      "editor.scrollbar.verticalScrollbarSize" = 2;
-      "editor.scrollbar.horizontalScrollbarSize" = 2;
-      "editor.scrollbar.vertical" = "hidden";
-      "editor.scrollbar.horizontal" = "hidden";
-      "workbench.layoutControl.enabled" = false;
-
-      "editor.mouseWheelZoom" = true;
-
-      "C_Cpp.intelliSenseUpdateDelay" = 500;
-      "C_Cpp.codeAnalysis.updateDelay" = 500;
-      "C_Cpp.autocompleteAddParentheses" = true;
-      "C_Cpp.formatting" = "vcFormat";
-      "C_Cpp.vcFormat.newLine.beforeOpenBrace.block" = "sameLine";
-      "C_Cpp.vcFormat.newLine.beforeOpenBrace.function" = "sameLine";
-      "C_Cpp.vcFormat.newLine.beforeOpenBrace.lambda" = "sameLine";
-      "C_Cpp.vcFormat.newLine.beforeOpenBrace.namespace" = "sameLine";
-      "C_Cpp.vcFormat.newLine.beforeOpenBrace.type" = "sameLine";
-      "C_Cpp.vcFormat.space.pointerReferenceAlignment" = "right";
-      "C_Cpp.vcFormat.newLine.beforeElse" = false;
-      "C_Cpp.vcFormat.newLine.beforeCatch" = false;
-      "C_Cpp.vcFormat.indent.caseLabels" = true;
-      "C_Cpp.clang_format_fallbackStyle" = "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}";
-    };
-    # Keybindings
-    keybindings = [
-      {
-        key = "ctrl+q";
-        command = "editor.action.commentLine";
-        when = "editorTextFocus && !editorReadonly";
-      }
-      {
-        key = "ctrl+s";
-        command = "workbench.action.files.saveFiles";
-      }
-    ];
   };
 }
