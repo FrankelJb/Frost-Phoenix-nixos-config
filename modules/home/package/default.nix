@@ -6,7 +6,7 @@
     fzf                               # fuzzy finder
     lazygit
     lsd
-    nitch                             # systhem fetch util
+    neofetch                          # system fetch util
     nix-prefetch-github
     pipx                              # Install Python applications in isolated environments
     ripgrep                           # grep replacement

@@ -2,8 +2,8 @@
   imports =
     [(import ./anyrun)]
     ++ [(import ./bat)]
-    ++ [(import ./btop)]
     ++ [(import ./cava)]
+    ++ [(import ./fish)]
     ++ [(import ./gaming)]
     ++ [(import ./git)]
     ++ [(import ./gtk)]
@@ -19,5 +19,5 @@
     ++ [(import ./vscodium)]
     ++ [(import ./waybar)]
     ++ [(import ./wofi)]
-    ++ [(import ./zellij)]];
+    ++ [(import ./zellij)];
 }

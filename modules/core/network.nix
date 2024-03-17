@@ -1,7 +1,7 @@
 { pkgs, ... }: 
 {
   networking = {
-    hostName = "helium;
+    hostName = "helium";
     networkmanager.enable = true;
     nameservers = [ "192.168.1.200" ];
   };

@@ -1,5 +1,5 @@
 {
-  description = "FrostPhoenix's nixos configuration";
+  description = "beans' nixos configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -9,7 +9,9 @@
     hyprpicker.url = "github:hyprwm/hyprpicker";
   
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-  
+    anyrun.url = "github:fufexan/anyrun";
+    anyrun.inputs.nixpkgs.follows = "nixpkgs"; 
+
     nix-gaming.url = "github:fufexan/nix-gaming";
   
     hyprland = {
@@ -36,10 +38,10 @@
     };
   };
 
-  outputs = { nixpkgs, self, ...} @ inputs:
+  outputs = { nixpkgs, self, anyrun,...} @ inputs:
     let
       selfPkgs = import ./pkgs;
-      username = "frostphoenix";
+      username = "beans";
     in
     {
       overlays.default = selfPkgs.overlay;

@@ -23,7 +23,7 @@ in
     isNormalUser = true;
     description = "${username}";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.fish;
+    shell = pkgs.bash;
   };
   nix.settings.allowed-users = [ "${username}" ];
 }

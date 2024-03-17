@@ -8,7 +8,7 @@ let
   lib = nixpkgs.lib;
 in
 {
-  nixos = nixpkgs.lib.nixosSystem {
+  helium = nixpkgs.lib.nixosSystem {
     specialArgs = { inherit self inputs username; };
     modules =
       [ (import ./bootloader.nix) ]
@@ -25,7 +25,7 @@ in
       ++ [ (import ./user.nix) ]
       ++ [ (import ./virtualization.nix) ]
       ++ [ (import ./wayland.nix) ]
-      ++ [ (import ./../../hosts/nixos/hardware-configuration.nix) ]
+      ++ [ (import ./../../hosts/helium/hardware-configuration.nix) ]
     ;
   };
 }
