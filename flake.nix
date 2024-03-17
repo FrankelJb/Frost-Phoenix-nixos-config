@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
+
+    matugen.url = "github:InioX/matugen";
+    ags.url = "github:Aylur/ags";
+    astal.url = "github:Aylur/astal";
   
     hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
@@ -48,5 +52,7 @@
       nixosConfigurations = import ./modules/core/default.nix {
         inherit self nixpkgs inputs username;
       };
+
+      asztal = pkgs.callPackage ./modules/home/ags { inherit inputs; };
     };
 }

@@ -5,8 +5,9 @@
     file                              # Show file information 
     fzf                               # fuzzy finder
     lazygit
+    lolcat
     lsd
-    neofetch                          # system fetch util
+    nitch                             # system fetch util
     nix-prefetch-github
     pipx                              # Install Python applications in isolated environments
     ripgrep                           # grep replacement
