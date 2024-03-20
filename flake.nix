@@ -52,7 +52,5 @@
       nixosConfigurations = import ./modules/core/default.nix {
         inherit self nixpkgs inputs username;
       };
-
-      asztal = pkgs.callPackage ./modules/home/ags { inherit inputs; };
     };
 }
