@@ -6,7 +6,7 @@
     ++ [(import ./bat)]
     ++ [(import ./cava)]
     ++ [(import ./fish)]
-    ++ [(import ./firefox]
+    ++ [(import ./firefox)]
     ++ [(import ./gaming)]
     ++ [(import ./git)]
     ++ [(import ./gtk)]

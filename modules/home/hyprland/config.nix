@@ -1,4 +1,8 @@
 { ... }:
+let
+  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  pactl = "${pkgs.pulseaudio}/bin/pactl";
+in 
 {
   wayland.windowManager.hyprland = {
     settings = {
@@ -40,9 +44,8 @@
           "dbus-update-activation-environment --systemd &"
           "nm-applet &"
           "wl-paste --primary --watch wl-copy --primary --clear"
-          "swaybg -m fill -i $(find ~/Pictures/wallpapers/ -maxdepth 1 -type f) &"
           "hyprctl setcursor Nordzy-cursors 22 &"
-          "ags &"
+          "ags -b hypr"
       ];
 
       input = {
@@ -150,7 +153,16 @@
       };
 
 
-      bind = [
+      bind = let
+        binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
+        mvfocus = binding "SUPER" "movefocus";
+        ws = binding "SUPER" "workspace";
+        resizeactive = binding "SUPER CTRL" "resizeactive";
+        mvactive = binding "SUPER ALT" "moveactive";
+        mvtows = binding "SUPER SHIFT" "movetoworkspace";
+        e = "exec, ags -b hypr";
+        arr = [1 2 3 4 5 6 7 8 9];
+      in [
         "$mainMod, Q, killactive"
           "$mainMod ALT CTRL SHIFT, delete, exit," # kill hyperland session
           "$mainMod, W, togglefloating," # toggle the window on focus to float
@@ -177,8 +189,8 @@
           "$mainMod_SHIFT, V, layoutmsg, orientationnext"
           "$mainMod CTRL, Return, layoutmsg, swapwithmaster"
 
-          "$mainMod, space, exec, anyrun" # launch desktop applications
-          "$mainMod, tab, workspace, m+1"
+          "$mainMod, space, ${e} -t launcher" # launch desktop applications
+          "$mainMod, tab, ${e} -t overview"
           "$mainMod SHIFT, tab, workspace, m-1"
 
           # Screenshot/Screencapture
@@ -276,10 +288,10 @@
       ];
 
       bindle = [
-        ",XF86AudioRaiseVolume, exec, sound-up"
-          ",XF86AudioLowerVolume, exec, sound-down"
-          ",XF86MonBrightnessUp, exec, brightness-up"
-          ",XF86MonBrightnessDown, exec, brightness-down"
+        ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
+        ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
+        ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
       ];
 
       bindm = [
