@@ -1,9 +1,12 @@
 {inputs, username, ...}: {
   imports =
     [(import ./anyrun)]
+    ++ [(import ./ags)]
+    ++ [(import ./bash)]
     ++ [(import ./bat)]
     ++ [(import ./cava)]
     ++ [(import ./fish)]
+    ++ [(import ./firefox]
     ++ [(import ./gaming)]
     ++ [(import ./git)]
     ++ [(import ./gtk)]

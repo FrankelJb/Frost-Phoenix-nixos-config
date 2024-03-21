@@ -41,10 +41,8 @@
           "nm-applet &"
           "wl-paste --primary --watch wl-copy --primary --clear"
           "swaybg -m fill -i $(find ~/Pictures/wallpapers/ -maxdepth 1 -type f) &"
-          "sleep 1 && swaylock"
           "hyprctl setcursor Nordzy-cursors 22 &"
-          "waybar &"
-          "mako &"
+          "ags &"
       ];
 
       input = {
@@ -120,7 +118,7 @@
         shadow_offset = "0 2";
         shadow_range = 20;
         shadow_render_power = 3;
-        col.shadow = "rgba(00000055)";
+        "col.shadow" = "rgba(00000055)";
       };
 
       animations = {

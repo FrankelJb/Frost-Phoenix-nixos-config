@@ -13,7 +13,6 @@ in
     modules =
       [ (import ./bootloader.nix) ]
       ++ [ (import ./hardware.nix) ]
-      ++ [ (import ./xserver.nix) ]
       ++ [ (import ./network.nix) ]
       ++ [ (import ./nvidia.nix) ]
       ++ [ (import ./pipewire.nix) ]
@@ -25,6 +24,7 @@ in
       ++ [ (import ./user.nix) ]
       ++ [ (import ./virtualization.nix) ]
       ++ [ (import ./wayland.nix) ]
+      ++ [ (import ./xserver.nix) ]
       ++ [ (import ./../../hosts/helium/hardware-configuration.nix) ]
     ;
   };
